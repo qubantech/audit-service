@@ -48,21 +48,21 @@ export class AuditService {
   }
 
   async createUserReport(dto: ReportRequestDto, id: string): Promise<Report> {
-    this.validateRequest(dto);
+    // this.validateRequest(dto);
     const report = this.mockService.getMock(Math.floor(Math.random() * 360));
     report.userId = id;
     return await this.reportRepository.create(report);
   }
 
   async createInstitutionReport(dto: ReportRequestDto, id: number) {
-    this.validateRequest(dto);
+    // this.validateRequest(dto);
     const report = this.mockService.getMock(Math.floor(Math.random() * 360));
     report.institutionId = id;
     return await this.reportRepository.create(report);
   }
 
   async createReport(dto: ReportRequestDto) {
-    this.validateRequest(dto);
+    // this.validateRequest(dto);
     const report = this.mockService.getMock(Math.floor(Math.random() * 360));
     return await this.reportRepository.create(report);
   }

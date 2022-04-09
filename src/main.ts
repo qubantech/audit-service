@@ -16,27 +16,13 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('/api/docs', app, document);
 
-  const whitelist = [
-    'localhost',
-    'http://localhost',
-    'http://localhost:3000',
-    '192.168.122.1',
-    '192.168.122.1:3000',
-    '192.168.221.205',
-    '192.168.221.205:3000',
-    'http://192.168.122.1',
-    'http://192.168.122.1:3000',
-    'http://192.168.221.205',
-    'http://192.168.221.205:3000',
-  ];
   app.enableCors({
-    origin: function (origin, callback) {
-      if (!origin || whitelist.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback(new Error(origin));
-      }
-    },
+    origin: [
+      'http://localhost:3000',
+      'http://localhost:6868',
+    ],
+    methods: ["GET", "POST"],
+    credentials: true,
   });
 
   await app.listen(PORT, () => {
