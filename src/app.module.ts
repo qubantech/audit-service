@@ -6,7 +6,7 @@ import { AuditModule } from './audit/audit.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(`mongodb://root:123456@mongodb:27017/`),
+    MongooseModule.forRoot(`mongodb://${process.env.DB_USER||'root'}:${process.env.DB_PASSWORD||'123456'}@${process.env.DB_HOST||'mongodb'}:${process.env.DB_PORT||'27017'}/${process.env.DB_NAME||''}`),
     AuditModule,
   ],
   controllers: [AppController],
